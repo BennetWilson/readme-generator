@@ -1,1 +1,0 @@
-{"username":"BennetWilson","repo":"readme-generator","name":"readme-generator","description":"its a readme generator","install":"none","usage":"nope","test":"none","contributors":"nope","license":"chocie1","questions":"ben@email"}
