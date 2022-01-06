@@ -116,7 +116,7 @@ async function init() {
         const markdown = generateMarkdown(data);
         console.log(markdown);
 
-        await writeFileAsync('README.md', markdown)
+        await writeFileAsync('README.md', generateMarkdown(data))
 
     } catch (error){
         console.log(error);
