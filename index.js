@@ -77,7 +77,7 @@ const questions = [
     {
         type: 'list',
         message: 'Choose a license for your project',
-        choices: ['Apache 2.0','Boost', 'BSD 3', 'BSD 2', 'CC0', 'CC1.0', 'CC4.0', 'EPL 1.0', 'GPL v3', 'AGPL v3', 'LGPL v3', 'FDL v1.3', 'Hippocratic 3.0', 'IPL 1.0', 'ISC', 'MIT', 'MPL 2.0', 'ODC BY', 'Perl', 'OFL 1.1', 'Unilicense', 'WTFPL', 'Zlib'],
+        choices: ['Apache 2.0', 'BSD 3', 'GPL v3', 'MIT', 'MPL 2.0', 'none'],
         name: 'license'
       
     },
@@ -99,24 +99,20 @@ fs.writeFile(filename, data, err => {
     if (err) {
         return console.log(err);
     }
-    console.log("Success! Your README.md file has been generated")
+    console.log("Your README.md file has been generated")
 })
 }
 
+// wai
 const writeFileAsync = util.promisify(writeToFile);
 
-// TODO: Create a function to initialize app
+
 async function init() {
     try {
 
         const data = await inquirer.prompt(questions);
-        console.log("Your responses: ", data);
-        // console.log("Getting you GitHub data now..");
 
-        // const userInfo = await api.getUser(data);
-        // console.log("Your GitHub info: ", userInfo);
-
-        console.log("Generating your README.md now..");
+    
         const markdown = generateMarkdown(data);
         console.log(markdown);
 
