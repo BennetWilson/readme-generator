@@ -38,22 +38,23 @@ function generateMarkdown(data) {
   // generating TOC based on user inputs in data
   let ToC = `## Table of Contents`;
 
-  if (data.install !== '') { ToC += `
+  if (data.installation !== '') { ToC += `
   * [Installation](#installation)` };
 
   if (data.usage !== '') { ToC += `
   * [Usage](#usage)` };
 
-  if (data.contributing !== '') { ToC += `
+  if (data.contributors !== '') { ToC += `
   * [Contributing](#contributing)` };
 
-  if (data.tests !== '') { ToC += `
+  if (data.test !== '') { ToC += `
   * [Tests](#tests)` };
 
-
+// setting variable for function 
 const license = renderLicenseBadge(data.license)
-  // generating markdown
-  let Markdown = 
+
+  // actual markdown down from here
+  let markDown = 
   `# ${data.title}
   ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/${data.username}/${data.repo}?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/${data.username}/${data.repo}?style=flat&logo=appveyor)
   
@@ -62,8 +63,6 @@ const license = renderLicenseBadge(data.license)
   
   ## Description 
   
-
-  
   ${data.description}
 
 
@@ -71,40 +70,36 @@ const license = renderLicenseBadge(data.license)
 
 
 
-
   ## Links
-
-
-
   
   `
 
   // add TOC to markdown
-  Markdown += ToC;
+  markDown += ToC;
  
   // add required license section
-  Markdown += `
+  markDown += `
   * [License](#license)`;
   
-
+console.log(data.installation)
   // optional installation section
   if (data.installation !== '') {
   
-  Markdown +=
+  markDown +=
   `
   
   ## Installation
   
   
   
-  ${data.install}`
+  ${data.installation}`
   };
   
 
   // optional usage section
   if (data.usage !== '') {
   
-  Markdown +=
+  markDown +=
   
   `
   
@@ -117,9 +112,9 @@ const license = renderLicenseBadge(data.license)
   
   
   // optional contributing section
-  if (data.contributing !== '') {
+  if (data.contributors !== '') {
 
-  Markdown +=
+  markDown +=
     
   `
   
@@ -132,9 +127,9 @@ const license = renderLicenseBadge(data.license)
   
 
   // optional tests section
-  if (data.tests !== '') {
-  
-  Markdown +=
+  if (data.test !== '') {
+  markDown +=
+
   `
   
   ## Tests
@@ -142,11 +137,11 @@ const license = renderLicenseBadge(data.license)
  
   
   ${data.test}`
-  };
+  } 
 
 
   // license section is required. adding badge
-  Markdown +=
+  markDown +=
   `
   
   ## License
@@ -158,7 +153,7 @@ ${license}
 
 
   // questions or contact dev section. adding dev to markdown
-  let Dev = 
+  let ques = 
   `
   
   
@@ -170,16 +165,16 @@ ${license}
   // add email to dev if not null
   if (data.questions !== null) {
   
-  Dev +=
+  ques +=
   `
   Email: ${data.questions}
   `};
 
   // add developer section to markdown
-  Markdown += Dev;
+  markDown += ques;
 
   // return markdown
-  return Markdown;
+  return markDown;
   
 }
 
